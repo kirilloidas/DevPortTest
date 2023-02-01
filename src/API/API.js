@@ -18,10 +18,8 @@ export const Api = () => {
                 store.commit('setLoading', false)
                 return response
             },
-            (error) => {
-                console.log(error)
+            () => {
                 handleError()
-                return Promise.reject(error)
             }
         )
     return result

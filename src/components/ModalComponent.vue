@@ -2,14 +2,18 @@
   <section class="modal-wrap" v-show="getModalMsg">
     <div class="modal-container">
       <h2 class="modal-container__text">{{ getModalMsg }}</h2>
-      <button class="modal_container__close-btn" @click="close">Close</button>
+      <CustomButton @click.native="close">Close</CustomButton>
     </div>
   </section>
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import CustomButton from './CustomButton.vue';
 export default {
   name: 'ModalComponent',
+  components: {
+    CustomButton
+  },
   computed: {
     ...mapGetters(['getModalMsg'])
   },
@@ -39,11 +43,8 @@ export default {
     background-color: lightblue;
     border-radius: 15px;
 
-    &__close-btn {
-      margin-top: 10px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      background-color: lightskyblue;
+    &__text {
+      margin-bottom: 10px;
     }
   }
 }

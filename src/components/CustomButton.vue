@@ -1,15 +1,11 @@
 <template>
-  <button class="custom-button">{{ text }}</button>
+  <button class="custom-button">
+    <slot/>
+  </button>
 </template>
 <script>
 export default {
-  name: 'CustomButton',
-  props: {
-    text: {
-      type: String,
-      default: ''
-    }
-  }
+  name: 'CustomButton'
 }
 </script>
 <style lang="scss" scoped>

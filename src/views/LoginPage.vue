@@ -19,9 +19,8 @@
         <CustomButton
           class="main-form-block__button"
           @click.native="submit"
-          text="Register"
           :class="{'not-active': isNotActiveBtn}"
-        />
+        >Register</CustomButton>
       </div>
     </form>
   </section>
