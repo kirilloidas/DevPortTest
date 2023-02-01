@@ -1,32 +1,32 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <header class="page-header"></header>
+    <main class="page-main">
+      <ModalComponent/>
+      <router-view/>
+      <img 
+        class="page-main__spinner"
+        src="@/assets/img/spinner.png" 
+        v-show="loading"
+      />
+    </main>
+    <footer class="page-footer"></footer>
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import { mapGetters } from 'vuex';
+import ModalComponent from './components/ModalComponent.vue';
+export default {
+  name: 'App', 
+  components: {
+    ModalComponent
+  },
+  computed: {
+    ...mapGetters(['loading'])
   }
 }
-</style>
+</script>
+
+<style lang="scss" src="@/assets/styles/variables.scss"></style>
+<style lang="scss" src="@/assets/styles/global.scss"></style>
+<style lang="scss" src="@/assets/styles/spinner.scss"></style>
