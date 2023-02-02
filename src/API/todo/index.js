@@ -1,7 +1,8 @@
+import queryParametersParser from "@/utils/queryParametersParser"
 import { Api } from "../API"
 
 export default {
-    getArrayOfUserId(page) {
-        return Api().get(`/todos?_page=${page}`)
+    getTasks(config) {
+        return Api().get(`/todos?${queryParametersParser(config)}`)
     }
 }

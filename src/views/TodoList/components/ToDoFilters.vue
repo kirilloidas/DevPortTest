@@ -10,9 +10,9 @@
     <DropdownList
       class="filters-container__drop-list"
       legend="User id"
-      :list="getUserIdArray"
+      :list="getUserIdList"
       :value="getToDoFilter.userId"
-      @firstOpen="() => firstOpenUserIdList('getUserIdArray')"
+      @firstOpen="() => firstOpenUserIdList('getUserId')"
       @setValue="value => setFilter('userId', value)"
     />
     <CustomInputWithFieldset
@@ -39,7 +39,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getToDoFilter', 'getUserIdArray'])
+    ...mapGetters(['getToDoFilter', 'getUserIdArray']),
+    getUserIdList() {
+      return ['All', ...this.getUserIdArray]
+    }
   },
   methods: {
     firstOpenUserIdList(actionName) {
@@ -47,6 +50,7 @@ export default {
     },
     setFilter(key, value) {
       this.$store.commit('todoFilterMutation', {[key]: value})
+      this.$store.dispatch('getToDoArray')
     }
   }
 }

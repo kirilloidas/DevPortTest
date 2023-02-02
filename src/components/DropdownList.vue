@@ -44,7 +44,7 @@ export default {
       this.$emit('firstOpen')
     },
     toggleOpen() {
-      if(!this.isOpened && !this.list.length) this.firstOpen()
+      if(!this.isOpened && !this.list.filter(el => el !== 'All').length) this.firstOpen()
       this.isOpened = !this.isOpened
     }
   }

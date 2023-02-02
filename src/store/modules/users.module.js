@@ -17,7 +17,7 @@ export default {
                     commit('setModalMsg', 'login error')
                 })
         },
-        getUserIdArray({commit}) {
+        getUserId({commit}) {
             UserAPI.getUsers()
                 .then(({data}) => {
                     commit('userIdArrayMutation', data)
