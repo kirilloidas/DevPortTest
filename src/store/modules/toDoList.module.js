@@ -1,4 +1,5 @@
 import { ToDoAPI } from "@/API"
+import { concatToDoArray } from "@/utils/concatToDoArray"
 import configParser from "@/utils/configParser"
 import { localFilter, apiFilter } from "@/utils/filtersParser"
 
@@ -19,12 +20,15 @@ export default {
             return ToDoAPI.getTasks(apiFilter({...state.filter, _page: state.todoPage}))
                 .then(({data}) => {
                     commit('todoPageMutation', ++state.todoPage)
-                    commit('todoArrayMutation', [...new Set([...state.todoArray, ...data, ...localFilter(state.createdTasks, state.filter)].sort((a, b) => a.id - b.id))])
+                    commit('todoArrayMutation', concatToDoArray(state, data))
                 })
         },
-        createTask({commit}, payload) {
+        createTask({commit, state}, payload) {
             return ToDoAPI.createTask(payload)
-                .then(({data}) => commit('createdTasksMutation', data))
+                .then(({data}) => {
+                    commit('createdTasksMutation', data)
+                    commit('todoArrayMutation', concatToDoArray(state, [data]))
+                })
         }
     },
     mutations: {

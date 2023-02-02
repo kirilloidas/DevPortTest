@@ -25,7 +25,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path !== '/' && !store.getters.getCurrentUser.id) {
+  if (!store.getters.getCurrentUser.id && to.path !== '/') {
       return next('/')
   }
   next()

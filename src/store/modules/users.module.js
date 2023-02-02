@@ -11,8 +11,8 @@ export default {
             UserAPI.getUsers(payload)
                 .then(({data}) => {
                     if(data.length) {
-                        router.push('todo')
-                        return commit('userMutation', data[0])
+                        commit('userMutation', data[0])
+                        return router.push('todo')
                     }
                     commit('setModalMsg', 'login error')
                 })

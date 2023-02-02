@@ -8,7 +8,7 @@
       <ul class="secondary-list">
         <li class="secondary-list__item userId">{{ task.userId }}</li>
         <li class="secondary-list__item id">{{ task.id }}</li>
-        <li class="secondary-list__item title">{{ task.title }}</li>
+        <li class="secondary-list__item title ellipsis">{{ task.title }}</li>
         <li class="secondary-list__item completed">{{ task.completed }}</li>
         <li class="secondary-list__item btn" v-show="index !== 0">
           <CustomButton @click.native="addToFavorites(task.id)">Add</CustomButton>

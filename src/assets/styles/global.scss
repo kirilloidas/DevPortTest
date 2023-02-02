@@ -41,6 +41,12 @@ nav, ul {
     margin: 0;
 }
 
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .page-header, .page-footer {
     background-color: var(--header-and-footer-bg-color);
 }
