@@ -2,17 +2,16 @@
   <ul class="todo-list" v-infinite-scrolling="scrollHandler">
     <li 
       class="todo-list__item"
-      v-for="task of getList"
+      v-for="(task, index) of getList"
       :key="task.id"
     >
       <ul class="secondary-list">
-        <li 
-          class="secondary-list__item"
-          :class="[item]"
-          v-for="item of Object.keys(task)"
-          :key="item"
-        >
-          {{ task[item] }}
+        <li class="secondary-list__item userId">{{ task.userId }}</li>
+        <li class="secondary-list__item id">{{ task.id }}</li>
+        <li class="secondary-list__item title">{{ task.title }}</li>
+        <li class="secondary-list__item completed">{{ task.completed }}</li>
+        <li class="secondary-list__item btn" v-show="index !== 0">
+          <CustomButton @click.native="addToFavorites(task.id)">Add</CustomButton>
         </li>
       </ul>
     </li>
@@ -20,9 +19,14 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import CustomButton from '@/components/CustomButton.vue';
+import favoritesTask from '@/utils/favoritesTasks'
 
 export default {
   name: 'ListTodo',
+  components: {
+    CustomButton
+  },
   computed: {
     ...mapGetters(['getToDoArray']),
     getList() {
@@ -31,7 +35,10 @@ export default {
   },
   methods: {
     scrollHandler() {
-
+      this.$store.dispatch('getToDoArray')
+    },
+    addToFavorites(id) {
+      favoritesTask.addId(id)
     }
   }
 }
@@ -42,6 +49,7 @@ export default {
   flex-direction: column;
   margin-top: 30px;
   max-height: 400px;
+  overflow: overlay;
 
   &__item {
     padding: 10px;
@@ -52,12 +60,19 @@ export default {
       padding: 0 20px;
       &__item {
         color: var(--white);
+        display: block;
 
-        &.id, &.userId, &.completed {
-          width: 10%;
+        &.id, &.userId, &.completed{
+          width: 7%;
         }
         &.title {
-          width: 70%;
+          width: 65%;
+        }
+        &.btn {
+          display: flex;
+          justify-content: center;
+          padding-left: 20px;
+          width: 14%;
         }
       }
     }

@@ -1,9 +1,6 @@
 const scrollHandler = ({value}, {target}) => {
-    if (target.clientHeight + target.scrollTop >= target.scrollHeight) {
-        // if (this.getPaginatorDepartment.paginator.count > this.perPage) {
-        //   this.perPage += 9
+    if (target.clientHeight + target.scrollTop >= target.scrollHeight - 20) {
           value()
-        // }
       }
 }
 

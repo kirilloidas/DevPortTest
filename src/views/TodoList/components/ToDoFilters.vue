@@ -21,17 +21,22 @@
       :value="getToDoFilter.title"
       @input="value => setFilter('title', value)"
     />
+    <CreateTask
+      class="filters-container__create"
+    />
   </section>
 </template>
 <script>
 import DropdownList from '@/components/DropdownList.vue';
 import CustomInputWithFieldset from '@/components/CustomInputWithFieldset.vue';
+import CreateTask from './CreateTask.vue';
 import { mapGetters } from 'vuex';
 export default {
   name: 'ToDoFilters',
   components: {
     DropdownList,
-    CustomInputWithFieldset
+    CustomInputWithFieldset,
+    CreateTask
   },
   data() {
     return {
@@ -49,7 +54,9 @@ export default {
       this.$store.dispatch(actionName)
     },
     setFilter(key, value) {
+      this.$store.commit('todoPageMutation', 1)
       this.$store.commit('todoFilterMutation', {[key]: value})
+      this.$store.commit('todoArrayMutation', [])
       this.$store.dispatch('getToDoArray')
     }
   }
@@ -58,5 +65,10 @@ export default {
 <style lang="scss" scoped>
 .filters-container {
   display: flex;
+  align-items: flex-end;
+
+  &__create {
+    margin-left: 40px;
+  }
 }
 </style>

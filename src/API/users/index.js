@@ -1,4 +1,4 @@
-import queryParametersParser from "@/utils/queryParametersParser"
+import {queryParametersParser} from "@/utils/queryParametersParser"
 import { Api } from "../API"
 
 export default {

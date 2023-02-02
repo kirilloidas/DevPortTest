@@ -15,6 +15,9 @@ export default {
     ToDoFilters,
     TopSection,
     ListTodo
+  },
+  created() {
+    this.$store.dispatch('getToDoArray')
   }
 }
 </script>

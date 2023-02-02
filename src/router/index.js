@@ -24,11 +24,11 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path !== '/' && !store.getters.getCurrentUser.id) {
-//       return next('/')
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/' && !store.getters.getCurrentUser.id) {
+      return next('/')
+  }
+  next()
+})
 
 export default router
