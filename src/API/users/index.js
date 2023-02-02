@@ -1,7 +1,8 @@
-import { Api } from ".."
+import queryParametersParser from "@/utils/queryParametersParser"
+import { Api } from "../API"
 
 export default {
-    getUsers(obj) {
-        return Api().get(`/users?username=${obj.userName}&phone=${obj.phoneNumber}`)
+    getUsers(config = {userName: '', phoneNumber: ''}) {
+        return Api().get(`/users?${queryParametersParser(config)}`)
     }
 }

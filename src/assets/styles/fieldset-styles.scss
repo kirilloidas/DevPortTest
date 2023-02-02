@@ -1,0 +1,17 @@
+.fieldset-container {
+    height: 53px;
+    border-radius: 8px;
+    border: var(--light-gray-border);
+    background: var(--white);
+    transition: all .3s ease-in-out;
+  
+    &__legend {
+      background: var(--white);
+      border-radius: 30px;
+      padding: 0 5px;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 15px;
+      color: #121826;
+    }
+}

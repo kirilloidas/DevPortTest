@@ -47,8 +47,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$store.dispatch('getUsers', {userName: this.userName, phoneNumber: this.phoneNumber})
-      console.log(21312312)
+      this.$store.dispatch('getUsers', {username: this.userName, phone: this.phoneNumber})
     }
   }
 }

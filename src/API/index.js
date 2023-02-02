@@ -1,7 +1,7 @@
-import { Api } from "./API";
 import UserAPI from './users'
+import ToDoAPI from './todo'
 
 export {
-    Api,
-    UserAPI
+    UserAPI,
+    ToDoAPI
 }

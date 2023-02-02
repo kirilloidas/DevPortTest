@@ -3,7 +3,8 @@ import router from '@/router'
 
 export default {
     state: {
-        users: []
+        currentUser: {},
+        userIdArray: [],
     },
     actions: {
         getUsers({commit}, payload) {
@@ -11,18 +12,28 @@ export default {
                 .then(({data}) => {
                     if(data.length) {
                         router.push('todo')
-                        return commit('usersMutation', res.data)
+                        return commit('userMutation', data[0])
                     }
                     commit('setModalMsg', 'login error')
+                })
+        },
+        getUserIdArray({commit}) {
+            UserAPI.getUsers()
+                .then(({data}) => {
+                    commit('userIdArrayMutation', data)
                 })
         }
     },
     mutations: {
-        usersMutation(state, payload) {
-            state.users = payload
-        }
+        userMutation(state, payload) {
+            state.currentUser = payload
+        },
+        userIdArrayMutation(state, payload) {
+            state.userIdArray = payload.map(el => el.id)
+        },
     },
     getters: {
-        getUsers: state => state.users
+        getCurrentUser: state => state.currentUser,
+        getUserIdArray: state => state.userIdArray,
     }
 }
